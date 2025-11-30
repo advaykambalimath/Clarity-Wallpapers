@@ -18,7 +18,6 @@ jobs:
       - name: Parse Issue Body
         id: parse
         env:
-          # SAFE WAY: Pass body as environment variable
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
           # Use jq to parse the JSON from the environment variable
@@ -28,6 +27,8 @@ jobs:
           THUMBNAIL_URL=$(echo "$ISSUE_BODY" | jq -r '.thumbnail_url')
           RESOLUTION=$(echo "$ISSUE_BODY" | jq -r '.resolution')
           SIZE_MB=$(echo "$ISSUE_BODY" | jq -r '.size_mb')
+          COLORS=$(echo "$ISSUE_BODY" | jq -r '.colors // [] | @json')
+          CATEGORIES=$(echo "$ISSUE_BODY" | jq -r '.categories // [] | @json')
           
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "author=$AUTHOR" >> $GITHUB_OUTPUT
@@ -35,6 +36,8 @@ jobs:
           echo "thumbnail_url=$THUMBNAIL_URL" >> $GITHUB_OUTPUT
           echo "resolution=$RESOLUTION" >> $GITHUB_OUTPUT
           echo "size_mb=$SIZE_MB" >> $GITHUB_OUTPUT
+          echo "colors=$COLORS" >> $GITHUB_OUTPUT
+          echo "categories=$CATEGORIES" >> $GITHUB_OUTPUT
 
       - name: Download Files
         run: |
@@ -82,6 +85,10 @@ jobs:
           UUID=$(uuidgen)
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           
+          # Extract colors and categories properly
+          COLORS='${{ steps.parse.outputs.colors }}'
+          CATEGORIES='${{ steps.parse.outputs.categories }}'
+          
           NEW_ENTRY=$(jq -n \
             --arg id "$UUID" \
             --arg title "${{ steps.parse.outputs.title }}" \
@@ -91,6 +98,8 @@ jobs:
             --arg date "$DATE" \
             --arg res "${{ steps.parse.outputs.resolution }}" \
             --arg size "${{ steps.parse.outputs.size_mb }}" \
+            --argjson cols "$COLORS" \
+            --argjson cats "$CATEGORIES" \
             '{
               id: $id, 
               title: $title, 
@@ -102,7 +111,10 @@ jobs:
               resolution: $res,
               sizeMB: $size,
               duration: "00:00",
-              downloads: 0
+              downloadCount: 0,
+              primaryColor: ($cols[0] // null),
+              secondaryColor: ($cols[1] // null),
+              categories: $cats
             }')
           
           if [ ! -s catalog.json ] || ! jq -e . catalog.json >/dev/null 2>&1; then
@@ -122,4 +134,4 @@ jobs:
       - name: Close Issue
         uses: peter-evans/close-issue@v3
         with:
-          comment: "Published with correct resolution and size!"
+          comment: "Published with analysis!"
