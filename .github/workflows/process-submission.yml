@@ -1,20 +1,26 @@
 name: Process Wallpaper Submission
 on:
   issues:
-    types: [opened]
-
+    types: [opened, labeled]
 permissions:
   contents: write
   issues: write
-
 jobs:
   process-submission:
-    if: startsWith(github.event.issue.title, '[Submission]')
+    # Run ONLY if:
+    # 1. It is a Submission issue AND
+    # 2. EITHER (It was just opened AND does NOT need approval)
+    #    OR (The 'approved' label was just added)
+    if: >
+      startsWith(github.event.issue.title, '[Submission]') &&
+      (
+        (github.event.action == 'opened' && !contains(toJSON(github.event.issue.labels.*.name), 'needs-approval')) ||
+        (github.event.action == 'labeled' && github.event.label.name == 'approved')
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
       - name: Parse Issue Body
         id: parse
         run: |
@@ -31,12 +37,10 @@ jobs:
           echo "author=$AUTHOR" >> $GITHUB_OUTPUT
           echo "video_url=$VIDEO_URL" >> $GITHUB_OUTPUT
           echo "thumbnail_url=$THUMBNAIL_URL" >> $GITHUB_OUTPUT
-
       - name: Download Files
         run: |
           curl -L "${{ steps.parse.outputs.video_url }}" -o video.mp4
           curl -L "${{ steps.parse.outputs.thumbnail_url }}" -o thumbnail.jpg
-
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
@@ -46,7 +50,6 @@ jobs:
             thumbnail.jpg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get Release URLs
         id: urls
         run: |
@@ -63,7 +66,6 @@ jobs:
           
           echo "video_perma_url=$VIDEO_PERMA_URL" >> $GITHUB_OUTPUT
           echo "thumb_perma_url=$THUMB_PERMA_URL" >> $GITHUB_OUTPUT
-
       - name: Re-upload renamed files
         uses: softprops/action-gh-release@v1
         with:
@@ -73,7 +75,6 @@ jobs:
             thumbnail-${{ github.event.issue.number }}.jpg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Update Catalog
         run: |
           # Create new JSON object
@@ -86,7 +87,6 @@ jobs:
           
           # Append to array in catalog.json
           jq ". + [$NEW_ENTRY]" catalog.json > temp.json && mv temp.json catalog.json
-
       - name: Commit Changes
         run: |
           git config user.name "WallpaperBot"
@@ -94,7 +94,6 @@ jobs:
           git add catalog.json
           git commit -m "Add wallpaper: ${{ steps.parse.outputs.title }}"
           git push
-
       - name: Close Issue
         uses: peter-evans/close-issue@v3
         with:
