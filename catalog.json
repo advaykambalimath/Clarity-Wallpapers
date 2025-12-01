@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "19058ead-1ddd-4f14-8528-dda1f89c8e7e",
+    "title": "Lonely World",
+    "authorName": "arkcett",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-16.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-16.jpg",
+    "createdAt": "2025-12-01T00:36:38Z",
+    "isPublic": true,
+    "resolution": "3840x2160",
+    "sizeMB": "135.2 MB",
+    "duration": "00:00",
+    "downloadCount": 0,
+    "primaryColor": "Blue",
+    "secondaryColor": "Black",
+    "categories": [
+      "Landscape"
+    ]
+  }
+]
