@@ -14,15 +14,14 @@ jobs:
         uses: actions/checkout@v3
       - name: Parse Issue Body
         id: parse
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          # Extract JSON from issue body
-          JSON_BODY="${{ github.event.issue.body }}"
-          
           # Use jq to parse the JSON and extract variables
-          TITLE=$(echo "$JSON_BODY" | jq -r '.title')
-          AUTHOR=$(echo "$JSON_BODY" | jq -r '.author')
-          VIDEO_URL=$(echo "$JSON_BODY" | jq -r '.video_url')
-          THUMBNAIL_URL=$(echo "$JSON_BODY" | jq -r '.thumbnail_url')
+          TITLE=$(echo "$ISSUE_BODY" | jq -r '.title')
+          AUTHOR=$(echo "$ISSUE_BODY" | jq -r '.author')
+          VIDEO_URL=$(echo "$ISSUE_BODY" | jq -r '.video_url')
+          THUMBNAIL_URL=$(echo "$ISSUE_BODY" | jq -r '.thumbnail_url')
           
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "author=$AUTHOR" >> $GITHUB_OUTPUT
