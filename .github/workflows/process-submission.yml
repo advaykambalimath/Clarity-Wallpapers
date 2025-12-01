@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v3
       - name: Parse Issue Body
         id: parse
-        env:
-          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          # Use jq to parse the JSON and extract variables
-          TITLE=$(echo "$ISSUE_BODY" | jq -r '.title')
-          AUTHOR=$(echo "$ISSUE_BODY" | jq -r '.author')
-          VIDEO_URL=$(echo "$ISSUE_BODY" | jq -r '.video_url')
-          THUMBNAIL_URL=$(echo "$ISSUE_BODY" | jq -r '.thumbnail_url')
+          # Extract values directly from the event payload using jq
+          # This avoids shell injection completely by never putting the body in a shell variable first
+          
+          TITLE=$(jq -r '.issue.body | fromjson | .title' "$GITHUB_EVENT_PATH")
+          AUTHOR=$(jq -r '.issue.body | fromjson | .author' "$GITHUB_EVENT_PATH")
+          VIDEO_URL=$(jq -r '.issue.body | fromjson | .video_url' "$GITHUB_EVENT_PATH")
+          THUMBNAIL_URL=$(jq -r '.issue.body | fromjson | .thumbnail_url' "$GITHUB_EVENT_PATH")
           
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "author=$AUTHOR" >> $GITHUB_OUTPUT
