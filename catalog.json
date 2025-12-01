@@ -16,5 +16,23 @@
     "categories": [
       "Landscape"
     ]
+  },
+  {
+    "id": "d8dcc767-806b-4030-b77e-2be6e6b040c1",
+    "title": "Meteors at Dawn",
+    "authorName": "arkcett",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-17.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-17.jpg",
+    "createdAt": "2025-12-01T00:46:18Z",
+    "isPublic": true,
+    "resolution": "3840x2160",
+    "sizeMB": "137 MB",
+    "duration": "00:00",
+    "downloadCount": 0,
+    "primaryColor": "Blue",
+    "secondaryColor": "Pink",
+    "categories": [
+      "Landscape"
+    ]
   }
 ]
