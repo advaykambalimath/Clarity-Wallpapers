@@ -34,5 +34,23 @@
     "categories": [
       "Landscape"
     ]
+  },
+  {
+    "id": "c85784ba-ecc6-4412-b41e-c7d41f0e7b6e",
+    "title": "Gaze",
+    "authorName": "arkcett",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-18.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-18.jpg",
+    "createdAt": "2025-12-01T00:51:55Z",
+    "isPublic": true,
+    "resolution": "3840x2160",
+    "sizeMB": "135.8 MB",
+    "duration": "00:00",
+    "downloadCount": 0,
+    "primaryColor": "Blue",
+    "secondaryColor": "Orange",
+    "categories": [
+      "Landscape"
+    ]
   }
 ]
