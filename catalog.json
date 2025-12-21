@@ -17,5 +17,25 @@
     "categories": [
       "Nature"
     ]
+  },
+  {
+    "id": "61",
+    "title": "Tiny Planet",
+    "author": "arkcett",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-61.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-61.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144 MB",
+    "duration": "03:00",
+    "author_bio": "",
+    "colors": [
+      "Black",
+      "Blue"
+    ],
+    "categories": [
+      "Nature",
+      "Abstract"
+    ]
   }
 ]
