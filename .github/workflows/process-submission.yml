@@ -87,20 +87,33 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update Catalog
+        env:
+          TITLE: ${{ steps.parse.outputs.title }}
+          AUTHOR: ${{ steps.parse.outputs.author }}
+          VIDEO: ${{ steps.urls.outputs.video_perma_url }}
+          THUMB: ${{ steps.urls.outputs.thumb_perma_url }}
+          RESOLUTION: ${{ steps.parse.outputs.resolution }}
+          SIZE: ${{ steps.parse.outputs.size_mb }}
+          DURATION: ${{ steps.parse.outputs.duration }}
+          BIO: ${{ steps.parse.outputs.bio }}
+          COLORS: ${{ steps.parse.outputs.colors }}
+          CATEGORIES: ${{ steps.parse.outputs.categories }}
+          ISSUE_ID: ${{ github.event.issue.number }}
         run: |
           # Create new JSON object
           NEW_ENTRY=$(jq -n \
-            --arg title "${{ steps.parse.outputs.title }}" \
-            --arg author "${{ steps.parse.outputs.author }}" \
-            --arg video "${{ steps.urls.outputs.video_perma_url }}" \
-            --arg thumb "${{ steps.urls.outputs.thumb_perma_url }}" \
-            --arg resolution "${{ steps.parse.outputs.resolution }}" \
-            --arg size "${{ steps.parse.outputs.size_mb }}" \
-            --arg duration "${{ steps.parse.outputs.duration }}" \
-            --arg bio "${{ steps.parse.outputs.bio }}" \
-            --argjson colors '${{ steps.parse.outputs.colors }}' \
-            --argjson categories '${{ steps.parse.outputs.categories }}' \
-            '{id: "'"${{ github.event.issue.number }}"'", title: $title, author: $author, videoURL: $video, thumbnailURL: $thumb, downloads: 0, resolution: $resolution, sizeMB: $size, duration: $duration, author_bio: $bio, colors: $colors, categories: $categories}')
+            --arg title "$TITLE" \
+            --arg author "$AUTHOR" \
+            --arg video "$VIDEO" \
+            --arg thumb "$THUMB" \
+            --arg resolution "$RESOLUTION" \
+            --arg size "$SIZE" \
+            --arg duration "$DURATION" \
+            --arg bio "$BIO" \
+            --arg id "$ISSUE_ID" \
+            --argjson colors "$COLORS" \
+            --argjson categories "$CATEGORIES" \
+            '{id: $id, title: $title, author: $author, videoURL: $video, thumbnailURL: $thumb, downloads: 0, resolution: $resolution, sizeMB: $size, duration: $duration, author_bio: $bio, colors: $colors, categories: $categories}')
           
           # Append to array in catalog.json
           jq ". + [$NEW_ENTRY]" catalog.json > temp.json && mv temp.json catalog.json
