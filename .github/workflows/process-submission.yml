@@ -17,9 +17,11 @@ jobs:
 
       - name: Parse Issue Body
         id: parse
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
           # Extract JSON from issue body
-          JSON_BODY="${{ github.event.issue.body }}"
+          JSON_BODY="$ISSUE_BODY"
           
           # Use jq to parse the JSON and extract variables
           TITLE=$(echo "$JSON_BODY" | jq -r '.title')
