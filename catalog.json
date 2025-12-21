@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "65",
+    "title": "Winter Settlements",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-65.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-65.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "145.2 MB",
+    "duration": "03:00",
+    "author_bio": "",
+    "author_is_public": true,
+    "primaryColor": "Purple",
+    "secondaryColor": "Pink",
+    "categories": [
+      "Nature"
+    ],
+    "createdAt": "2025-12-21T18:27:40Z"
+  }
+]
