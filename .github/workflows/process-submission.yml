@@ -33,16 +33,20 @@ jobs:
           CATEGORIES=$(echo "$JSON_BODY" | jq -c '.categories')
           BIO=$(echo "$JSON_BODY" | jq -r '.author_bio')
           
-          echo "title=$TITLE" >> $GITHUB_OUTPUT
-          echo "author=$AUTHOR" >> $GITHUB_OUTPUT
-          echo "video_url=$VIDEO_URL" >> $GITHUB_OUTPUT
-          echo "thumbnail_url=$THUMBNAIL_URL" >> $GITHUB_OUTPUT
-          echo "resolution=$RESOLUTION" >> $GITHUB_OUTPUT
-          echo "size_mb=$SIZE_MB" >> $GITHUB_OUTPUT
-          echo "duration=$DURATION" >> $GITHUB_OUTPUT
-          echo "colors=$COLORS" >> $GITHUB_OUTPUT
-          echo "categories=$CATEGORIES" >> $GITHUB_OUTPUT
-          echo "bio=$BIO" >> $GITHUB_OUTPUT
+          {
+            echo "title=$TITLE"
+            echo "author=$AUTHOR"
+            echo "video_url=$VIDEO_URL"
+            echo "thumbnail_url=$THUMBNAIL_URL"
+            echo "resolution=$RESOLUTION"
+            echo "size_mb=$SIZE_MB"
+            echo "duration=$DURATION"
+            echo "colors=$COLORS"
+            echo "categories=$CATEGORIES"
+            echo "bio<<EOF"
+            echo "$BIO"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Download Files
         run: |
