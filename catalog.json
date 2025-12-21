@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "id": "59",
+    "title": "Summer Feeling",
+    "author": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-59.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-59.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.2 MB",
+    "duration": "03:00",
+    "author_bio": "",
+    "colors": [
+      "Purple",
+      "Orange"
+    ],
+    "categories": [
+      "Nature"
+    ]
+  }
+]
