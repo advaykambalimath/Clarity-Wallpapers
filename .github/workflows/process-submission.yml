@@ -21,30 +21,38 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
           # Extract JSON from issue body
-          JSON_BODY="$ISSUE_BODY"
+          echo "$ISSUE_BODY" > issue_body.json
           
           # Use jq to parse the JSON and extract variables
-          TITLE=$(echo "$JSON_BODY" | jq -r '.title')
-          AUTHOR=$(echo "$JSON_BODY" | jq -r '.author')
-          VIDEO_URL=$(echo "$JSON_BODY" | jq -r '.video_url')
-          THUMBNAIL_URL=$(echo "$JSON_BODY" | jq -r '.thumbnail_url')
-          RESOLUTION=$(echo "$JSON_BODY" | jq -r '.resolution')
-          SIZE_MB=$(echo "$JSON_BODY" | jq -r '.size_mb')
-          DURATION=$(echo "$JSON_BODY" | jq -r '.duration')
-          COLORS=$(echo "$JSON_BODY" | jq -c '.colors')
-          CATEGORIES=$(echo "$JSON_BODY" | jq -c '.categories')
-          BIO=$(echo "$JSON_BODY" | jq -r '.author_bio')
+          TITLE=$(jq -r '.title' issue_body.json)
+          AUTHOR=$(jq -r '.author' issue_body.json)
+          AUTHOR_ID=$(jq -r '.author_id // ""' issue_body.json)
+          VIDEO_URL=$(jq -r '.video_url' issue_body.json)
+          THUMBNAIL_URL=$(jq -r '.thumbnail_url' issue_body.json)
+          RESOLUTION=$(jq -r '.resolution' issue_body.json)
+          SIZE_MB=$(jq -r '.size' issue_body.json) # Note: 'size' in JSON, 'size_mb' in output var? Check swift. Swift sends 'size'.
+          DURATION=$(jq -r '.duration' issue_body.json)
+          colors=$(jq -r '.primary_color' issue_body.json) # Single color extraction based on swift JSON
+          categories=$(jq -c '.categories' issue_body.json)
+          BIO=$(jq -r '.author_bio // ""' issue_body.json)
+          AUTHOR_IS_PUBLIC=$(jq -r '.author_is_public // true' issue_body.json)
+          PRIMARY_COLOR=$(jq -r '.primary_color // ""' issue_body.json)
+          SECONDARY_COLOR=$(jq -r '.secondary_color // ""' issue_body.json)
           
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "author=$AUTHOR" >> $GITHUB_OUTPUT
+          echo "author_id=$AUTHOR_ID" >> $GITHUB_OUTPUT
+          echo "video_url=$VIDEO_URL" >> $GITHUB_OUTPUT
+          echo "thumbnail_url=$THUMBNAIL_URL" >> $GITHUB_OUTPUT
+          echo "resolution=$RESOLUTION" >> $GITHUB_OUTPUT
+          echo "size_mb=$SIZE_MB" >> $GITHUB_OUTPUT
+          echo "duration=$DURATION" >> $GITHUB_OUTPUT
+          echo "primary_color=$PRIMARY_COLOR" >> $GITHUB_OUTPUT
+          echo "secondary_color=$SECONDARY_COLOR" >> $GITHUB_OUTPUT
+          echo "categories=$categories" >> $GITHUB_OUTPUT
+          echo "author_is_public=$AUTHOR_IS_PUBLIC" >> $GITHUB_OUTPUT
+
           {
-            echo "title=$TITLE"
-            echo "author=$AUTHOR"
-            echo "video_url=$VIDEO_URL"
-            echo "thumbnail_url=$THUMBNAIL_URL"
-            echo "resolution=$RESOLUTION"
-            echo "size_mb=$SIZE_MB"
-            echo "duration=$DURATION"
-            echo "colors=$COLORS"
-            echo "categories=$CATEGORIES"
             echo "bio<<EOF"
             echo "$BIO"
             echo "EOF"
@@ -52,8 +60,8 @@ jobs:
 
       - name: Download Files
         run: |
-          curl -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" --retry 5 --retry-delay 10 --connect-timeout 60 --max-time 600 "${{ steps.parse.outputs.video_url }}" -o video.mp4
-          curl -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" --retry 5 --retry-delay 10 --connect-timeout 60 --max-time 600 "${{ steps.parse.outputs.thumbnail_url }}" -o thumbnail.jpg
+          curl -L -A "Mozilla/5.0" --retry 5 --retry-delay 10 --connect-timeout 60 --max-time 600 "${{ steps.parse.outputs.video_url }}" -o video.mp4
+          curl -L -A "Mozilla/5.0" --retry 5 --retry-delay 10 --connect-timeout 60 --max-time 600 "${{ steps.parse.outputs.thumbnail_url }}" -o thumbnail.jpg
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
@@ -68,11 +76,10 @@ jobs:
       - name: Get Release URLs
         id: urls
         run: |
-          # Construct the permanent GitHub Release URLs
           REPO="${{ github.repository }}"
           TAG="storage-v1"
           
-          # We need unique names to avoid overwriting. Using Issue Number.
+          # Rename for uniqueness
           mv video.mp4 "video-${{ github.event.issue.number }}.mp4"
           mv thumbnail.jpg "thumbnail-${{ github.event.issue.number }}.jpg"
           
@@ -96,20 +103,27 @@ jobs:
         env:
           TITLE: ${{ steps.parse.outputs.title }}
           AUTHOR: ${{ steps.parse.outputs.author }}
+          AUTHOR_ID: ${{ steps.parse.outputs.author_id }}
           VIDEO: ${{ steps.urls.outputs.video_perma_url }}
           THUMB: ${{ steps.urls.outputs.thumb_perma_url }}
           RESOLUTION: ${{ steps.parse.outputs.resolution }}
           SIZE: ${{ steps.parse.outputs.size_mb }}
           DURATION: ${{ steps.parse.outputs.duration }}
           BIO: ${{ steps.parse.outputs.bio }}
-          COLORS: ${{ steps.parse.outputs.colors }}
+          PRIMARY_COLOR: ${{ steps.parse.outputs.primary_color }}
+          SECONDARY_COLOR: ${{ steps.parse.outputs.secondary_color }}
           CATEGORIES: ${{ steps.parse.outputs.categories }}
+          AUTHOR_IS_PUBLIC: ${{ steps.parse.outputs.author_is_public }}
           ISSUE_ID: ${{ github.event.issue.number }}
         run: |
-          # Create new JSON object
+          if [ ! -f catalog.json ]; then
+            echo "[]" > catalog.json
+          fi
+          
           NEW_ENTRY=$(jq -n \
             --arg title "$TITLE" \
             --arg author "$AUTHOR" \
+            --arg author_id "$AUTHOR_ID" \
             --arg video "$VIDEO" \
             --arg thumb "$THUMB" \
             --arg resolution "$RESOLUTION" \
@@ -117,11 +131,29 @@ jobs:
             --arg duration "$DURATION" \
             --arg bio "$BIO" \
             --arg id "$ISSUE_ID" \
-            --argjson colors "$COLORS" \
+            --arg primary "$PRIMARY_COLOR" \
+            --arg secondary "$SECONDARY_COLOR" \
             --argjson categories "$CATEGORIES" \
-            '{id: $id, title: $title, author: $author, videoURL: $video, thumbnailURL: $thumb, downloads: 0, resolution: $resolution, sizeMB: $size, duration: $duration, author_bio: $bio, colors: $colors, categories: $categories}')
+            --argjson public "$AUTHOR_IS_PUBLIC" \
+            '{
+              id: $id, 
+              title: $title, 
+              author: $author, 
+              author_id: $author_id,
+              videoURL: $video, 
+              thumbnailURL: $thumb, 
+              downloads: 0, 
+              resolution: $resolution, 
+              sizeMB: $size, 
+              duration: $duration, 
+              author_bio: $bio, 
+              author_is_public: $public,
+              primaryColor: $primary,
+              secondaryColor: $secondary,
+              categories: $categories,
+              createdAt: (now | strftime("%Y-%m-%dT%H:%M:%SZ"))
+            }')
           
-          # Append to array in catalog.json
           jq ". + [$NEW_ENTRY]" catalog.json > temp.json && mv temp.json catalog.json
 
       - name: Commit Changes
@@ -135,4 +167,4 @@ jobs:
       - name: Close Issue
         uses: peter-evans/close-issue@v3
         with:
-          comment: "Successfully published! Your wallpaper is now live."
+          comment: "Successfully published!"
