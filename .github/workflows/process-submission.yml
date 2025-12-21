@@ -2,9 +2,11 @@ name: Process Wallpaper Submission
 on:
   issues:
     types: [opened]
+
 permissions:
   contents: write
   issues: write
+
 jobs:
   process-submission:
     if: startsWith(github.event.issue.title, '[Submission]')
@@ -12,25 +14,41 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+
       - name: Parse Issue Body
         id: parse
         run: |
-          # Extract values directly from the event payload using jq
-          # This avoids shell injection completely by never putting the body in a shell variable first
+          # Extract JSON from issue body
+          JSON_BODY="${{ github.event.issue.body }}"
           
-          TITLE=$(jq -r '.issue.body | fromjson | .title' "$GITHUB_EVENT_PATH")
-          AUTHOR=$(jq -r '.issue.body | fromjson | .author' "$GITHUB_EVENT_PATH")
-          VIDEO_URL=$(jq -r '.issue.body | fromjson | .video_url' "$GITHUB_EVENT_PATH")
-          THUMBNAIL_URL=$(jq -r '.issue.body | fromjson | .thumbnail_url' "$GITHUB_EVENT_PATH")
+          # Use jq to parse the JSON and extract variables
+          TITLE=$(echo "$JSON_BODY" | jq -r '.title')
+          AUTHOR=$(echo "$JSON_BODY" | jq -r '.author')
+          VIDEO_URL=$(echo "$JSON_BODY" | jq -r '.video_url')
+          THUMBNAIL_URL=$(echo "$JSON_BODY" | jq -r '.thumbnail_url')
+          RESOLUTION=$(echo "$JSON_BODY" | jq -r '.resolution')
+          SIZE_MB=$(echo "$JSON_BODY" | jq -r '.size_mb')
+          DURATION=$(echo "$JSON_BODY" | jq -r '.duration')
+          COLORS=$(echo "$JSON_BODY" | jq -c '.colors')
+          CATEGORIES=$(echo "$JSON_BODY" | jq -c '.categories')
+          BIO=$(echo "$JSON_BODY" | jq -r '.author_bio')
           
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "author=$AUTHOR" >> $GITHUB_OUTPUT
           echo "video_url=$VIDEO_URL" >> $GITHUB_OUTPUT
           echo "thumbnail_url=$THUMBNAIL_URL" >> $GITHUB_OUTPUT
+          echo "resolution=$RESOLUTION" >> $GITHUB_OUTPUT
+          echo "size_mb=$SIZE_MB" >> $GITHUB_OUTPUT
+          echo "duration=$DURATION" >> $GITHUB_OUTPUT
+          echo "colors=$COLORS" >> $GITHUB_OUTPUT
+          echo "categories=$CATEGORIES" >> $GITHUB_OUTPUT
+          echo "bio=$BIO" >> $GITHUB_OUTPUT
+
       - name: Download Files
         run: |
-          curl -L "${{ steps.parse.outputs.video_url }}" -o video.mp4
-          curl -L "${{ steps.parse.outputs.thumbnail_url }}" -o thumbnail.jpg
+          curl -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" --retry 5 --retry-delay 10 --connect-timeout 60 --max-time 600 "${{ steps.parse.outputs.video_url }}" -o video.mp4
+          curl -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" --retry 5 --retry-delay 10 --connect-timeout 60 --max-time 600 "${{ steps.parse.outputs.thumbnail_url }}" -o thumbnail.jpg
+
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
         with:
@@ -40,6 +58,7 @@ jobs:
             thumbnail.jpg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get Release URLs
         id: urls
         run: |
@@ -56,6 +75,7 @@ jobs:
           
           echo "video_perma_url=$VIDEO_PERMA_URL" >> $GITHUB_OUTPUT
           echo "thumb_perma_url=$THUMB_PERMA_URL" >> $GITHUB_OUTPUT
+
       - name: Re-upload renamed files
         uses: softprops/action-gh-release@v1
         with:
@@ -65,6 +85,7 @@ jobs:
             thumbnail-${{ github.event.issue.number }}.jpg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Update Catalog
         run: |
           # Create new JSON object
@@ -73,10 +94,17 @@ jobs:
             --arg author "${{ steps.parse.outputs.author }}" \
             --arg video "${{ steps.urls.outputs.video_perma_url }}" \
             --arg thumb "${{ steps.urls.outputs.thumb_perma_url }}" \
-            '{id: "'"${{ github.event.issue.number }}"'", title: $title, author: $author, videoURL: $video, thumbnailURL: $thumb, downloads: 0}')
+            --arg resolution "${{ steps.parse.outputs.resolution }}" \
+            --arg size "${{ steps.parse.outputs.size_mb }}" \
+            --arg duration "${{ steps.parse.outputs.duration }}" \
+            --arg bio "${{ steps.parse.outputs.bio }}" \
+            --argjson colors '${{ steps.parse.outputs.colors }}' \
+            --argjson categories '${{ steps.parse.outputs.categories }}' \
+            '{id: "'"${{ github.event.issue.number }}"'", title: $title, author: $author, videoURL: $video, thumbnailURL: $thumb, downloads: 0, resolution: $resolution, sizeMB: $size, duration: $duration, author_bio: $bio, colors: $colors, categories: $categories}')
           
           # Append to array in catalog.json
           jq ". + [$NEW_ENTRY]" catalog.json > temp.json && mv temp.json catalog.json
+
       - name: Commit Changes
         run: |
           git config user.name "WallpaperBot"
@@ -84,6 +112,7 @@ jobs:
           git add catalog.json
           git commit -m "Add wallpaper: ${{ steps.parse.outputs.title }}"
           git push
+
       - name: Close Issue
         uses: peter-evans/close-issue@v3
         with:
