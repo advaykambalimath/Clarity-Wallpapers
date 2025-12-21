@@ -58,5 +58,22 @@
       "Sci-Fi",
       "Nature"
     ]
+  },
+  {
+    "id": "63",
+    "title": "Summer Feeling",
+    "author": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-63.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-63.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.2 MB",
+    "duration": "03:00",
+    "author_bio": "",
+    "colors": [
+      "Pink",
+      "Orange"
+    ],
+    "categories": []
   }
 ]
