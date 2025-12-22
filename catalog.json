@@ -261,5 +261,25 @@
       "Sci-Fi"
     ],
     "createdAt": "2025-12-22T22:38:43Z"
+  },
+  {
+    "id": "78",
+    "title": "Train Station",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-78.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-78.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.3 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Brown",
+    "categories": [
+      "Nature"
+    ],
+    "createdAt": "2025-12-22T22:41:57Z"
   }
 ]
