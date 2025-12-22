@@ -201,5 +201,25 @@
       "Games"
     ],
     "createdAt": "2025-12-22T21:56:10Z"
+  },
+  {
+    "id": "75",
+    "title": "Coastal",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-75.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-75.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.8 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Teal",
+    "categories": [
+      "Nature"
+    ],
+    "createdAt": "2025-12-22T21:59:29Z"
   }
 ]
