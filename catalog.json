@@ -99,5 +99,25 @@
       "Anime"
     ],
     "createdAt": "2025-12-22T21:42:03Z"
+  },
+  {
+    "id": "70",
+    "title": "Porsche 911 Carrera",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-70.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-70.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.7 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Purple",
+    "secondaryColor": "Black",
+    "categories": [
+      "Cars"
+    ],
+    "createdAt": "2025-12-22T21:45:18Z"
   }
 ]
