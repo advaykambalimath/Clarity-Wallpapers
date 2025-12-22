@@ -342,5 +342,26 @@
       "Nature"
     ],
     "createdAt": "2025-12-22T22:52:44Z"
+  },
+  {
+    "id": "82",
+    "title": "Lonely World",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-82.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-82.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.8 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Red",
+    "secondaryColor": "Blue",
+    "categories": [
+      "Nature",
+      "Sci-Fi"
+    ],
+    "createdAt": "2025-12-22T23:42:53Z"
   }
 ]
