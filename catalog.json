@@ -160,5 +160,26 @@
       "Sci-Fi"
     ],
     "createdAt": "2025-12-22T21:50:49Z"
+  },
+  {
+    "id": "73",
+    "title": "Genshin Impact",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-73.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-73.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.3 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Green",
+    "categories": [
+      "Anime",
+      "Games"
+    ],
+    "createdAt": "2025-12-22T21:53:27Z"
   }
 ]
