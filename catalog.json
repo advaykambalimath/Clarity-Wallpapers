@@ -59,5 +59,25 @@
       "Games"
     ],
     "createdAt": "2025-12-22T21:28:21Z"
+  },
+  {
+    "id": "68",
+    "title": "Summer Feeling",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-68.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-68.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.2 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Pink",
+    "secondaryColor": "Orange",
+    "categories": [
+      "Nature"
+    ],
+    "createdAt": "2025-12-22T21:33:34Z"
   }
 ]
