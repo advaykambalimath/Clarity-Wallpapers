@@ -281,5 +281,25 @@
       "Nature"
     ],
     "createdAt": "2025-12-22T22:41:57Z"
+  },
+  {
+    "id": "79",
+    "title": "Silk Song",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-79.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-79.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.9 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Orange",
+    "secondaryColor": "Yellow",
+    "categories": [
+      "Games"
+    ],
+    "createdAt": "2025-12-22T22:48:15Z"
   }
 ]
