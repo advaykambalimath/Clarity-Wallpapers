@@ -39,5 +39,25 @@
       "Abstract"
     ],
     "createdAt": "2025-12-22T21:23:00Z"
+  },
+  {
+    "id": "67",
+    "title": "The Beauty of Skyrim",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-67.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-67.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.9 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Black",
+    "categories": [
+      "Games"
+    ],
+    "createdAt": "2025-12-22T21:28:21Z"
   }
 ]
