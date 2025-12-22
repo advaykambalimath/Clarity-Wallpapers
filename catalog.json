@@ -139,5 +139,26 @@
       "Nature"
     ],
     "createdAt": "2025-12-22T21:48:30Z"
+  },
+  {
+    "id": "72",
+    "title": "Halo Infinite",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-72.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-72.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "145.5 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Black",
+    "categories": [
+      "Games",
+      "Sci-Fi"
+    ],
+    "createdAt": "2025-12-22T21:50:49Z"
   }
 ]
