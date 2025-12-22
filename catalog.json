@@ -119,5 +119,25 @@
       "Cars"
     ],
     "createdAt": "2025-12-22T21:45:18Z"
+  },
+  {
+    "id": "71",
+    "title": "Mount Fuji",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-71.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-71.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.5 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Purple",
+    "secondaryColor": "Black",
+    "categories": [
+      "Nature"
+    ],
+    "createdAt": "2025-12-22T21:48:30Z"
   }
 ]
