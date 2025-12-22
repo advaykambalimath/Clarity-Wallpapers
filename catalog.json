@@ -79,5 +79,25 @@
       "Nature"
     ],
     "createdAt": "2025-12-22T21:33:34Z"
+  },
+  {
+    "id": "69",
+    "title": "Spirited Away - Bath House",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-69.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-69.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.8 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Black",
+    "categories": [
+      "Anime"
+    ],
+    "createdAt": "2025-12-22T21:42:03Z"
   }
 ]
