@@ -301,5 +301,26 @@
       "Games"
     ],
     "createdAt": "2025-12-22T22:48:15Z"
+  },
+  {
+    "id": "80",
+    "title": "Neon Flowers",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-80.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-80.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "Black",
+    "categories": [
+      "Sci-Fi",
+      "Abstract"
+    ],
+    "createdAt": "2025-12-22T22:50:11Z"
   }
 ]
