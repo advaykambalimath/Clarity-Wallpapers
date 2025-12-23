@@ -1,0 +1,42 @@
+name: Track Download
+on:
+  repository_dispatch:
+    types: [track-download]
+
+permissions:
+  contents: write
+
+jobs:
+  track-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Increment Download Count
+        env:
+          WALLPAPER_ID: ${{ github.event.client_payload.wallpaper_id }}
+        run: |
+          echo "Tracking download for wallpaper: $WALLPAPER_ID"
+          
+          if [ ! -f catalog.json ]; then
+            echo "Error: catalog.json not found"
+            exit 1
+          fi
+          
+          # Increment the downloads count for the specific wallpaper
+          jq --arg id "$WALLPAPER_ID" '
+            map(if .id == $id then .downloads = (.downloads + 1) else . end)
+          ' catalog.json > temp.json && mv temp.json catalog.json
+          
+          # Show the updated count
+          NEW_COUNT=$(jq -r --arg id "$WALLPAPER_ID" '.[] | select(.id == $id) | .downloads' catalog.json)
+          echo "New download count for $WALLPAPER_ID: $NEW_COUNT"
+
+      - name: Commit Changes
+        run: |
+          git config user.name "WallpaperBot"
+          git config user.email "bot@noreply.github.com"
+          git add catalog.json
+          git diff --staged --quiet || git commit -m "Track download for wallpaper ${{ github.event.client_payload.wallpaper_id }}"
+          git push
