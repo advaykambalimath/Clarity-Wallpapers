@@ -469,5 +469,25 @@
       "Nature"
     ],
     "createdAt": "2025-12-23T00:45:00Z"
+  },
+  {
+    "id": "88",
+    "title": "Gaze",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-88.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-88.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.8 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Teal",
+    "secondaryColor": "Blue",
+    "categories": [
+      "Nature"
+    ],
+    "createdAt": "2025-12-23T00:47:36Z"
   }
 ]
