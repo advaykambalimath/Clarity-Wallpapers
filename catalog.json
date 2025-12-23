@@ -633,5 +633,25 @@
       "Sci-Fi"
     ],
     "createdAt": "2025-12-23T01:06:24Z"
+  },
+  {
+    "id": "96",
+    "title": "Aston Martin",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-96.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-96.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.7 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Black",
+    "secondaryColor": "Purple",
+    "categories": [
+      "Cars"
+    ],
+    "createdAt": "2025-12-23T01:09:00Z"
   }
 ]
