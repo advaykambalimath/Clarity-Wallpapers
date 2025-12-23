@@ -571,5 +571,25 @@
       "Cars"
     ],
     "createdAt": "2025-12-23T00:58:37Z"
+  },
+  {
+    "id": "93",
+    "title": "Abstract Totem",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-93.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-93.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "140.1 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Pink",
+    "secondaryColor": "Purple",
+    "categories": [
+      "Abstract"
+    ],
+    "createdAt": "2025-12-23T01:01:05Z"
   }
 ]
