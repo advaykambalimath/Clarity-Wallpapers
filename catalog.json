@@ -509,5 +509,26 @@
       "Games"
     ],
     "createdAt": "2025-12-23T00:50:54Z"
+  },
+  {
+    "id": "90",
+    "title": "Neon Sunset",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-90.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-90.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "142.3 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Pink",
+    "secondaryColor": "Red",
+    "categories": [
+      "Sci-Fi",
+      "Abstract"
+    ],
+    "createdAt": "2025-12-23T00:53:37Z"
   }
 ]
