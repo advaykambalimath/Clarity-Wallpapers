@@ -673,5 +673,26 @@
       "Nature"
     ],
     "createdAt": "2025-12-23T01:12:07Z"
+  },
+  {
+    "id": "98",
+    "title": "Nature in a Light Bulb",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-98.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-98.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.5 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Green",
+    "secondaryColor": "Orange",
+    "categories": [
+      "Abstract",
+      "Nature"
+    ],
+    "createdAt": "2025-12-23T01:14:53Z"
   }
 ]
