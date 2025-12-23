@@ -530,5 +530,26 @@
       "Abstract"
     ],
     "createdAt": "2025-12-23T00:53:37Z"
+  },
+  {
+    "id": "91",
+    "title": "Sky",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-91.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-91.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.3 MB",
+    "duration": "02:59",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Blue",
+    "secondaryColor": "White",
+    "categories": [
+      "Abstract",
+      "Nature"
+    ],
+    "createdAt": "2025-12-23T00:55:47Z"
   }
 ]
