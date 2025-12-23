@@ -406,5 +406,26 @@
       "Sci-Fi"
     ],
     "createdAt": "2025-12-23T00:32:16Z"
+  },
+  {
+    "id": "85",
+    "title": "Deep Space",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-85.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-85.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "143.8 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Orange",
+    "secondaryColor": "Red",
+    "categories": [
+      "Sci-Fi",
+      "Abstract"
+    ],
+    "createdAt": "2025-12-23T00:38:45Z"
   }
 ]
