@@ -551,5 +551,25 @@
       "Nature"
     ],
     "createdAt": "2025-12-23T00:55:47Z"
+  },
+  {
+    "id": "92",
+    "title": "Porsche 911 - Retro",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-92.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-92.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144.2 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Black",
+    "secondaryColor": "Red",
+    "categories": [
+      "Cars"
+    ],
+    "createdAt": "2025-12-23T00:58:37Z"
   }
 ]
