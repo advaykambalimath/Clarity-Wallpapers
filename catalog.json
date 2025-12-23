@@ -427,5 +427,27 @@
       "Abstract"
     ],
     "createdAt": "2025-12-23T00:38:45Z"
+  },
+  {
+    "id": "86",
+    "title": "Santa's House",
+    "author": "arkcett",
+    "author_id": "advaykambalimath",
+    "videoURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/video-86.mp4",
+    "thumbnailURL": "https://github.com/advaykambalimath/Clarity-Wallpapers/releases/download/storage-v1/thumbnail-86.jpg",
+    "downloads": 0,
+    "resolution": "3840x2160",
+    "sizeMB": "144 MB",
+    "duration": "03:00",
+    "author_bio": "Creator of Clarity",
+    "author_is_public": true,
+    "primaryColor": "Purple",
+    "secondaryColor": "Blue",
+    "categories": [
+      "Nature",
+      "Sci-Fi",
+      "Abstract"
+    ],
+    "createdAt": "2025-12-23T00:42:28Z"
   }
 ]
